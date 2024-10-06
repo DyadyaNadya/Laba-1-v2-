@@ -13,6 +13,7 @@ public class Immis
         {
 
             case 1:
+                //Задача 1.2
                 Console.WriteLine("====== Сумма двух последних знаков числа ====== \n");
                 while (true)
                 {
