@@ -13,21 +13,50 @@ public class Immis
         {
 
             case 1:
-                //Задача 1.2
                 Console.WriteLine("====== Сумма двух последних знаков числа ====== \n");
-                Console.WriteLine("Введите число:");
-                int n = Convert.ToInt32(Console.ReadLine());
-                Immis task1_2 = new Immis();
-                Console.WriteLine("Сумма двух последних знаков числа: " + task1_2.sumLastNums(n));
+                while (true)
+                {
+                    Console.WriteLine("Введите число (не менее двух знаков):");
+                    string input1_2 = Console.ReadLine();
+
+                    if (int.TryParse(input1_2, out int n1_2))
+                    {
+                        
+                        if (Math.Abs(n1_2) < 10)
+                        {
+                            Console.WriteLine("Ошибка! Число должно иметь не менее двух знаков!");
+                            continue;
+                        }
+                        Immis task1_2 = new Immis();
+                        int result1_2 = Math.Abs(task1_2.sumLastNums(n1_2));
+                        Console.WriteLine("Сумма двух последних знаков числа: " + result1_2);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка! Нужно ввести целое число!");
+                    }
+                }
                 break;
 
             case 2:
                 //Задача 1.4 
                 Console.WriteLine("====== Возврат true, если число положительное ====== \n");
-                Console.WriteLine("Введите число: ");
-                int dig = Convert.ToInt32(Console.ReadLine());
-                Immis task1_4 = new Immis();
-                Console.WriteLine(task1_4.isPositive(dig));
+                while (true)
+                {
+                    Console.WriteLine("Введите число: ");
+                    string input1_4 = Console.ReadLine();
+                    if (int.TryParse(input1_4, out int n1_4))
+                    {
+                        Immis task1_4 = new Immis();
+                        Console.WriteLine(task1_4.isPositive(n1_4));
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка! Некорректный ввод.");
+                    }
+                }
                 break;
 
             case 3:
@@ -44,31 +73,78 @@ public class Immis
                 }
                 else
                 {
-                    Console.WriteLine("Несоответствие условию задания");
+                    Console.WriteLine("Несоответствие условию задания. Введите одну латинскую букву");
                 }
                 break;
 
             case 4:
+                //Задание 1.8
                 Console.WriteLine("====== Проверка того, делится ли одно число нацело на другое ====== \n");
-                //Задание 1.8 
-                Console.WriteLine("Введите число a: ");
-                int a = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Введите число b: ");
-                int b = Convert.ToInt32(Console.ReadLine());
+                int a, b;
+                while (true)
+                {
+                    Console.WriteLine("Введите число a: ");
+                    string inputA1_8 = Console.ReadLine();
+                    if (int.TryParse(inputA1_8, out a))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка! Введите корректное целое число для a.");
+                    }
+                }
+                while (true)
+                {
+                    Console.WriteLine("Введите число b: ");
+                    string inputB1_8 = Console.ReadLine();
+                    if (int.TryParse(inputB1_8, out b))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка! Введите корректное целое число для b.");
+                    }
+                }
                 Immis task1_8 = new Immis();
                 Console.WriteLine(task1_8.isDivisor(a, b));
                 break;
 
             case 5:
-                //Задание 1.10 
-                Console.WriteLine("====== Сумма двух чисел из разяда единиц ====== \n");
-                Console.WriteLine("Введите число a: ");
-                int A = Convert.ToInt32(Console.ReadLine());
+                //Задание 5
+                Console.WriteLine("====== Сумма двух чисел из разряда единиц ====== \n");
+                int A;
+                while (true)
+                {
+                    Console.WriteLine("Введите число a: ");
+                    if (int.TryParse(Console.ReadLine(), out A))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка! Введите корректное целое число a.");
+                    }
+                }
+
                 Immis task1_10 = new Immis();
                 for (int i = 1; i < 5; i++)
                 {
-                    Console.WriteLine("Введите число b: ");
-                    int B = Convert.ToInt32(Console.ReadLine());
+                    int B;
+                    while (true)
+                    {
+                        Console.WriteLine("Введите число b: ");
+                        if (int.TryParse(Console.ReadLine(), out B))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ошибка! Введите корректное целое число b.");
+                        }
+                    }
+
                     int otvet = task1_10.LastNumSum(A, B);
                     Console.WriteLine(A + " + " + B + " это " + otvet);
                     A = otvet;
@@ -205,6 +281,7 @@ public class Immis
 
             case 16:
                 //Задание 4.2
+                Console.WriteLine("========= Вывод индекса найденного элемента ========= \n");
                 Immis task4_2 = new Immis();
                 Console.WriteLine("Введите размер массива: ");
                 int size = Convert.ToInt32(Console.ReadLine());
@@ -223,7 +300,16 @@ public class Immis
                     }
                     Console.Write("Введите число, индекс которого нужно найти: ");
                     int goal = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Результат: " + task4_2.findLast(arr, goal));
+                    int answ = task4_2.findLast(arr, goal);
+
+                    if (answ == -1)
+                    {
+                        Console.Write("Этого элемента нет в массиве");
+                    }
+                    else
+                    {
+                        Console.Write("Индекс последнего вхождения этого элемента: " + answ);
+                    }
                 }
                 break;
 
@@ -408,8 +494,8 @@ public class Immis
     //Задача 1.10
     public int LastNumSum(int a, int b)
     {
-        int num1 = a % 10;
-        int num2 = b % 10;
+        int num1 = Math.Abs(a % 10);
+        int num2 = Math.Abs(b % 10);
         return num1 + num2;
     }
 
@@ -511,24 +597,24 @@ public class Immis
     //задание 3.2
     public String reverseListNums(int x)
     {
-        StringBuilder sb = new StringBuilder();
+        string result = ""; 
+
         if (x > 0)
         {
             for (int i = x; i >= 0; i--)
             {
-                sb.Append(i);
-                sb.Append(' ');
+                result += i + " "; 
             }
         }
         else
         {
             for (int i = x; i <= 0; i++)
             {
-                sb.Append(i);
-                sb.Append(" ");
+                result += i + " "; 
             }
         }
-            return sb.ToString();
+
+        return result.Trim(); 
     }
 
     //Задание 3.4
@@ -583,7 +669,7 @@ public class Immis
         Random rnd = new Random();
         int target = rnd.Next(0, 10);
 
-        int attempts = 0;
+        int attempts = 1;
         Console.WriteLine("Введите число от 0 до 9");
         int value = Convert.ToInt32(Console.ReadLine());
 
@@ -592,15 +678,20 @@ public class Immis
             attempts++;
             value = Convert.ToInt32(Console.ReadLine());
         }
-        if (value == target && (attempts % 10 != 1 || attempts % 10 != 2 || attempts % 10 != 3 || attempts % 10 != 4))
+        if(value == target && attempts % 10 == 1)
         {
             Console.WriteLine("Вы угадали!");
-            Console.WriteLine($"Вы угадали число за {attempts} попыток");
+            Console.WriteLine($"Вы угадали число за {attempts} попытку");
         }
-        else if(value == target && attempts % 10 == 1)
+        else if (value == target && attempts == 0)
         {
             Console.WriteLine("Вы угадали!");
-            Console.WriteLine($"Вы угадали число за {attempts} попыток");
+            Console.WriteLine($"Вы угадали число за 1 попытку");
+        }
+        else if (value == target && (attempts % 10 != 1 && attempts % 10 != 5 && attempts % 10 != 6 && attempts % 10 != 7 && attempts % 10 != 8 && attempts % 10 != 9 && attempts % 10 != 0))
+        {
+            Console.WriteLine("Вы угадали!");
+            Console.WriteLine($"Вы угадали число за {attempts} попытки");
         }
         else
         {
