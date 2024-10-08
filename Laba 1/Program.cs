@@ -7,7 +7,7 @@ public class Immis
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Введите номер задания: ");
+        Console.WriteLine("Введите номер задания от 1 до 20: ");
         int number = Convert.ToInt32(Console.ReadLine());
         switch (number)
         {
@@ -435,7 +435,7 @@ public class Immis
 
 
             default:
-                Console.WriteLine("Z t,fk hjn 'njuj cbynfrcbcf");
+                Console.WriteLine("Вы ввели неправильное число");
                 break;
 
         }
